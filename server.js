@@ -1,15 +1,12 @@
-const express = require('express');
-const app = express();
-require('dotenv').config();
-const cors = require('cors');
-const connectDB = require('./db/db');
-app.use(cors());
-const cookieParser = require('cookie-parser')
-app.use(express.json());
-const port = process.env.PORT || 5000;
-connectDB();
-app.use(cookieParser());
+import http from "http";
+import app from "./app.js";
+import dotenv from "dotenv";
 
-app.listen(port,()=>{
-    console.log(`server is running on port ${port}`)
+
+const port = process.env.PORT || 5001;
+
+const server = http.createServer(app);
+
+server.listen(port , ()=>{
+    console.log(`Server is running on port ${port}`)
 })
